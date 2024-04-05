@@ -12,7 +12,7 @@ class guitar_fft:
     x = []
     y = []
 
-    def read_dataframe(self, path: str):
+    def read_dataframe(self, path: str, dec: int = 1):
         # Open the expected pandas dataframe
         with open(path) as file:
             data = csv.reader(file)
@@ -22,7 +22,7 @@ class guitar_fft:
                     continue 
 
                 # Decimate the data by a factor of 1'000
-                if i % 1_000 == 0:
+                if i % dec == 0:
                     # Split the time and voltage fields and append it to their arrays
                     fields = str(row[0]).split(';')
                     self.time.append(fields[0])
@@ -67,6 +67,9 @@ class guitar_fft:
 
     def plot_results(self):
         plt.plot(self.x, self.y)
+        plt.title("FFT Analysys")
+        plt.xlabel("Frequency [Hz]")
+        plt.ylabel("Amplitude [mW]")
         plt.show()
 
 
