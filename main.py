@@ -82,4 +82,3 @@ if __name__ == '__main__':
     fft_instance.calc_fft()
     fft_instance.extract_harmonics_from_fft()
     fft_instance.plot_results()
-
